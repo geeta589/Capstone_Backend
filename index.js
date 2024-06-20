@@ -13,15 +13,21 @@
 
 
 
-
+import morgan from 'morgan';
 import express from 'express'
 import mongoose from 'mongoose';
 import cors from 'cors';
-const app = express()
-app.use(express.json());
-app.use(cors());
+import userRouter from './routes/Registration.js'
+
 mongoose.connect("mongodb+srv://geetaahirwar589:geeta123@cluster0.5irte5n.mongodb.net/RecipeUser")
 
-app.listen(3001,()=>{
+const app = express()
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(cors());
+
+
+app.use("/user",userRouter)
+app.listen(4000,()=>{
     console.log("server is running")
 })

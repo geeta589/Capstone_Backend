@@ -1,5 +1,5 @@
 import express from "express";
-import Registration from "../models/Registration.js";
+import register from "../models/Registration.js";
 
 const router = express.Router();
 
@@ -10,13 +10,11 @@ router.get("/", async (req, res) => {
 router.post("/Registration", async (req, res) => {
   console.log(req.body);
   try {
-    const Fname = await register.create(req.body);
-    const Lname = await register.create(req.body);
-    const email = await register.create(req.body);
-    const password = await register.create(req.body);
+    const user = await register.create(req.body);
 
+    console.log(user);
    
-    res.send(register);
+    res.send(user);
   } catch (error) {
     console.log(error);
   }
